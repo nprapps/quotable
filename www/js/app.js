@@ -1,11 +1,34 @@
 $(function() {
-    var context = $.extend(APP_CONFIG, {
-        'template_path': 'jst/example.html',
-        'config': JSON.stringify(APP_CONFIG, null, 4),
-        'copy': JSON.stringify(COPY, null, 4)
+    $('#save').on('click', function(){
+        html2canvas($('.quote'), {
+          onrendered: function(canvas) {
+            document.body.appendChild(canvas);
+            window.oCanvas = document.getElementsByTagName("canvas");
+            window.oCanvas = window.oCanvas[0];
+            var strDataURI = window.oCanvas.toDataURL("image/jpeg"); 
+            Canvas2Image.saveAsPNG(oCanvas);
+          }
+        });
     });
 
-    var html = JST.example(context);
+    $('#news').on('click', function(){
+        $(this)
+            .addClass('btn-primary')
+            .removeClass('btn-default');
+        $('#music')
+            .removeClass('btn-primary')
+            .addClass('btn-default');
+        $('.quote').removeClass('music');
+    });
 
-    $('#template-example').html(html);
+    $('#music').on('click', function(){
+        $(this)
+            .addClass('btn-primary')
+            .removeClass('btn-default');
+        $('#news')
+            .removeClass('btn-primary')
+            .addClass('btn-default');
+
+        $('.quote').addClass('music');
+    });
 });
