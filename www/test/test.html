@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>quotable</title>
+
+    <meta name="description" content="An opinionated project template for (mostly) server-less apps.">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link rel="shortcut icon" href="http://media.npr.org/favicon.ico" />
+
+
+    <!-- CHARTBEAT -->
+    <script type="text/javascript">var _sf_startpt=(new Date()).getTime()</script>
+
+    <!-- CSS -->
+    
+    
+    <link rel="stylesheet" type="text/css" href="../css/app.min.css" />
+
+    <!-- AD CODE -->
+    <script>
+        NPR = {};
+        NPR.PageInfo = {};
+        NPR.PageInfo.getUrlParameter = function (param) {
+            return false;
+        };
+    </script>
+
+    <!-- JS -->
+    
+    
+    
+    
+    
+    
+    
+    
+    <script type="text/javascript" src="../js/app-header.min.js"></script>
+
+    <script>
+        googletag.cmd.push(function() {
+            try {
+                
+                if (DFP.shouldRenderForDevice('desktop')) {
+                    googletag.defineSlot("/6735/n6735.NPRTEST/News_NPR_News_Investigations", [[300,250],[300,600]], 'ad-desktop').addService(googletag.pubads());
+                }                    
+                if (DFP.shouldRenderForDevice('88')) {
+                    googletag.defineSlot("/6735/n6735.NPRTEST/News_NPR_News_Investigations", [88,31], 'ad-88').addService(googletag.pubads());
+                }                    
+           
+                googletag.pubads().setTargeting('storyId', '203618536');
+                googletag.pubads().setTargeting('testserver', 'true');
+                
+                // device detection to send to ad server
+                var deviceString = '';
+                var ua = navigator.userAgent.toLowerCase();
+                if (ua.indexOf("android") > -1) {
+                    googletag.pubads().setTargeting('device', 'android');
+                }
+                else if (ua.match(/(iPad|iPhone|iPod)/i)) {
+                    googletag.pubads().setTargeting('device', 'ios');
+                }
+                
+                
+                
+                if (typeof DFP.queryParameters.sc === 'string' && DFP.queryParameters.sc.length > 0) {
+                    scValue = DFP.queryParameters.sc;
+                }
+                else if (typeof document.referrer === 'string' && document.referrer.search('facebook.com') > -1) {
+                    scValue = 'fb';
+                }
+                else if (typeof DFP.queryParameters.ft === 'string') {
+                    scValue = DFP.queryParameters.ft;
+                }
+                googletag.pubads().setTargeting('sc', scValue);
+                
+                
+                var utm_source = typeof DFP.queryParameters.utm_source === 'string' && DFP.queryParameters.utm_source.length > 0?DFP.queryParameters.utm_source:'';
+                var utm_medium = typeof DFP.queryParameters.utm_medium === 'string' && DFP.queryParameters.utm_medium.length > 0?DFP.queryParameters.utm_medium:'';
+                googletag.pubads().setTargeting('utm_source', utm_source);
+                googletag.pubads().setTargeting('utm_medium', utm_medium);
+                
+                var orient = '';
+                if (NPR.Devices.isOnPhone() || NPR.Devices.isOnTablet()) {
+                    if (window.orientation == 0 || window.orientation == 180) {
+                        orient = 'portrait';
+                    } else if (window.orientation == 90 || window.orientation == -90) {
+                        orient = 'landscape';
+                    }
+                }
+                googletag.pubads().setTargeting('orient', orient);                        
+                        
+                googletag.pubads().enableSingleRequest();
+                googletag.pubads().collapseEmptyDivs();
+                googletag.enableServices();
+            } catch(e) {
+                NPR.messaging.exception(e, 'Define Google Publisher Tags', NPR.messaging.constants.SPONSORSHIP_ERROR);
+            }              
+        }); 
+    </script>
+
+    
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@nprapps">
+    <meta name="twitter:image" content="" />
+
+    
+    <meta property="og:title" content="quotable" />
+    <meta property="og:url" content="http://apps.npr.org/quotable/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:description" content="An opinionated project template for (mostly) server-less apps." />
+    <meta property="og:image" content="" />
+    <meta property="og:site_name" content="NPR.org" />
+    <meta property="fb:app_id" content="138837436154588" />
+
+    
+    <meta name="thumbnail" content="" />
+
+    
+    
+</head>
+<body>
+    <a class="sr-only" href="#content">Skip To Content</a>
+
+    
+
+    
+
+
+    <section id="content">
+        <div class="container">
+            
+<div class="row">
+    <div class="quote col-md-12">
+        <blockquote contenteditable="true">Test test test</blockquote>
+
+        <p class="source" contenteditable="true">Source Goes Here</p>
+
+        <img class="logo" src="../img/npr-home.png">
+    </div>
+
+    <div class="controls col-md-12">
+        <div class="controls-wrapper">
+            <div class="btn-group">
+                <button id="news" class="btn btn-large btn-primary">News</button>
+                <button id="music" class="btn btn-large btn-default">Music</button>
+            </div>
+            <button id="save" class="btn btn-large btn-primary">Save image</button>
+        </div>
+    </div>
+</div>
+
+        </div>
+    </section>
+
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <script type="text/javascript" src="../js/app-footer.min.js"></script>
+
+    
+    
+
+    <!-- GOOGLE ANALYTICS -->
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-5828686-4']);
+        _gaq.push(['_trackPageview']);
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+
+
+    <!-- CHARTBEAT -->
+    <script type="text/javascript">
+        var _sf_async_config={};
+        /** CONFIGURATION START **/
+        _sf_async_config.uid = 18888;
+        _sf_async_config.domain = "npr.org";
+        /** CONFIGURATION END **/
+        (function(){
+            function loadChartbeat() {
+                window._sf_endpt=(new Date()).getTime();
+                var e = document.createElement("script");
+                e.setAttribute("language", "javascript");
+                e.setAttribute("type", "text/javascript");
+                e.setAttribute("src",
+                    (("https:" == document.location.protocol) ?
+                     "https://a248.e.akamai.net/chartbeat.download.akamai.com/102508/" :
+                     "http://static.chartbeat.com/") +
+                    "js/chartbeat.js");
+                document.body.appendChild(e);
+            }
+            var oldonload = window.onload;
+            window.onload = (typeof window.onload != "function") ?
+                loadChartbeat : function() { oldonload(); loadChartbeat(); };
+        })();
+    </script>
+</body>
+</html>
