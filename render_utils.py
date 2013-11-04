@@ -103,7 +103,7 @@ class JavascriptIncluder(Includer):
         header = render_template('_js_header.js', **context) 
         output.insert(0, header) 
 
-        return '\n'.join(output)
+        return output
 
 class CSSIncluder(Includer):
     """
