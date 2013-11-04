@@ -94,7 +94,8 @@ class JavascriptIncluder(Includer):
 
             with open('www/%s' % src) as f:
                 print '- compressing %s' % src
-                output.append(minify(f.read()))
+                # output.append(minify(f.read()))
+                output.append(f.read())
 
         context = make_context()
         context['paths'] = src_paths
