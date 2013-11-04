@@ -31,4 +31,8 @@ $(function() {
 
         $('.quote').addClass('music');
     });
+
+    var editor = new MediumEditor('.quote', {
+        buttons: ['bold', 'italic']
+    });
 });
