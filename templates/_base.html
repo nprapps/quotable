@@ -138,18 +138,19 @@
 
 
     {% endblock outer_content %}
-
+    <script src="{{ S3_BASE_URL }}/js/lib/medium-editor.min.js"></script>
     {{ JS.push('js/lib/underscore.js') }}
     {{ JS.push('js/lib/moment.js') }}
     {{ JS.push('js/lib/bootstrap.js') }}
     {% block extra_foot_js %}{% endblock extra_foot_js %}
-    {{ JS.push('js/lib/medium-editor.min.js') }}
     {{ JS.push('js/lib/html2canvas.js') }}
     {{ JS.push('js/lib/canvas2image.js') }}
     {{ JS.push('js/lib/base64.js') }}
     {{ JS.push('js/templates.js') }}
     {{ JS.push('js/app.js') }}
     {{ JS.render('js/app-footer.min.js') }}
+
+    
 
     {% block extra_foot %}
     {% endblock extra_foot %}

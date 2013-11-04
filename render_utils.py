@@ -94,8 +94,7 @@ class JavascriptIncluder(Includer):
 
             with open('www/%s' % src) as f:
                 print '- compressing %s' % src
-                # output.append(minify(f.read()))
-                output.append(f.read())
+                output.append(minify(f.read()))
 
         context = make_context()
         context['paths'] = src_paths
@@ -103,7 +102,7 @@ class JavascriptIncluder(Includer):
         header = render_template('_js_header.js', **context) 
         output.insert(0, header) 
 
-        return output
+        return '\n'.join(output)
 
 class CSSIncluder(Includer):
     """
