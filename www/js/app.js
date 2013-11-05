@@ -12,28 +12,19 @@ $(function() {
     });
 
     $('#news').on('click', function(){
-        $(this)
-            .addClass('btn-primary')
-            .removeClass('btn-default');
-        $('#music')
-            .removeClass('btn-primary')
-            .addClass('btn-default');
-        $('.poster').removeClass('music');
+        $(this).toggleClass('btn-primary btn-default');
+        $('#music').toggleClass('btn-primary btn-default');
+        $('.poster').toggleClass('music');
     });
 
     $('#music').on('click', function(){
-        $(this)
-            .addClass('btn-primary')
-            .removeClass('btn-default');
-        $('#news')
-            .removeClass('btn-primary')
-            .addClass('btn-default');
-
-        $('.poster').addClass('music');
+        $(this).toggleClass('btn-primary btn-default');
+        $('#news').toggleClass('btn-primary btn-default');
+        $('.poster').toggleClass('music');
     });
 
     $('#quote').on('click', function(){
-        $(this).toggleClass('btn-primary btn-default');
+        $(this).find('button').toggleClass('btn-primary btn-default');
         $('.poster blockquote').toggleClass('quote');
     });
 

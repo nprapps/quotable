@@ -15,13 +15,65 @@ canvas {
 	display: none;
 }
 
+.content {
+	display: table;
+	width: 100%;
+	max-width: 960px;
+	margin: 0 auto;
+
+	.poster-wrapper,
+	.container {
+		display: table-cell;
+		vertical-align: top;
+	}
+
+	.poster-wrapper {
+		width: 640px;
+	}
+}
+
 .controls-wrapper {
-	width: 640px;
-	margin: @line-height-computed auto;
+	padding-top: @line-height-computed;
 
 	.btn-group,
 	.btn-group + .btn {
 		margin-right: @grid-gutter-width / 2;
+	}
+
+	.form-group,
+	.btn-group {
+		margin-bottom: @line-height-computed;
+	}
+
+	label {
+		display: block;
+	}
+}
+
+header {
+	background: @gray-darker;
+	margin: 0;
+	padding: @line-height-computed / 2 @grid-gutter-width / 2;
+	color: @gray-lighter;
+
+	.header-wrapper {
+		max-width: 960px;
+		margin: 0 auto;
+		padding: 0 @grid-gutter-width / 2;
+	}
+	
+
+	h1 {
+		display: inline-block;
+		text-transform: uppercase;
+		font-weight: normal;
+		-webkit-font-smoothing: antialiased;
+	}
+
+	img {
+		position: relative;
+		top: 5px;
+		margin: @line-height-computed 0;
 	}
 }
 
@@ -30,7 +82,7 @@ canvas {
 	height: 640px;
 	width: 640px;
 	background: #fff;
-	margin: @grid-gutter-width auto 0;
+	margin: @line-height-computed;
 	position: relative;
 	padding: @grid-gutter-width * 2;
 	font-size: 75px;
