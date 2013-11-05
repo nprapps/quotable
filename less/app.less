@@ -152,9 +152,18 @@ header {
 
 	.logo-wrapper {
 		position: absolute;
-		bottom: @grid-gutter-width * 2;
-		right: @grid-gutter-width * 2;
+		width: 100%;
+		z-index: 100;
+		bottom: 0;
+		right: 0;
+		text-align: right;
+		padding: @grid-gutter-width;
 		font-size: 46px;
+		background: #fff;
+
+		.music& {
+			background: @musicDark;
+		}
 
 		span {
 			display: none;

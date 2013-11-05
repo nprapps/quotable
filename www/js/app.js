@@ -6,8 +6,17 @@ $(function() {
             document.body.appendChild(canvas);
             window.oCanvas = document.getElementsByTagName("canvas");
             window.oCanvas = window.oCanvas[0];
-            // var strDataURI = window.oCanvas.toDataURL("image/jpeg"); 
-            Canvas2Image.saveAsPNG(oCanvas);
+            var strDataURI = window.oCanvas.toDataURL();
+
+            var a = $("<a>").attr("href", strDataURI).attr("download", "quote.png").appendTo("body");
+
+            a[0].click();
+
+            a.remove();
+
+            $('#download').attr('href', strDataURI);
+            $('#download').trigger('click');
+            // Canvas2Image.saveAsPNG(oCanvas);
           }
         });
     });
