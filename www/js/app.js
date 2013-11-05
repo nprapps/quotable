@@ -1,6 +1,6 @@
 $(function() {
     $('#save').on('click', function(){
-        html2canvas($('.quote'), {
+        html2canvas($('.poster'), {
           onrendered: function(canvas) {
             document.body.appendChild(canvas);
             window.oCanvas = document.getElementsByTagName("canvas");
@@ -18,7 +18,7 @@ $(function() {
         $('#music')
             .removeClass('btn-primary')
             .addClass('btn-default');
-        $('.quote').removeClass('music');
+        $('.poster').removeClass('music');
     });
 
     $('#music').on('click', function(){
@@ -29,15 +29,20 @@ $(function() {
             .removeClass('btn-primary')
             .addClass('btn-default');
 
-        $('.quote').addClass('music');
+        $('.poster').addClass('music');
+    });
+
+    $('#quote').on('click', function(){
+        $(this).toggleClass('btn-primary btn-default');
+        $('.poster blockquote').toggleClass('quote');
     });
 
     $('#fontsize').on('change', function(){
         var font_size = $(this).val().toString() + 'px';
-        $('.quote').css('font-size', font_size);
+        $('.poster').css('font-size', font_size);
     });
 
-    var editor = new MediumEditor('.quote', {
+    var editor = new MediumEditor('.poster', {
         buttons: ['bold', 'italic']
     });
 });

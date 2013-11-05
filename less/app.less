@@ -19,21 +19,23 @@ canvas {
 	width: 640px;
 	margin: @line-height-computed auto;
 
-	.btn-group {
-		margin-right: @grid-gutter-width;
+	.btn-group,
+	.btn-group + .btn {
+		margin-right: @grid-gutter-width / 2;
 	}
 }
 
 
-.quote {
+.poster {
 	height: 640px;
 	width: 640px;
 	background: #fff;
 	margin: @grid-gutter-width auto 0;
 	position: relative;
-	padding: @grid-gutter-width;
-	font-size: @font-size-base * 3;
-	line-height: 1.2 !important;
+	padding: @grid-gutter-width * 2;
+	font-size: 75px;
+	line-height: 1 !important;
+	font-weight: 700;
 
 	&.music {
 		background: @musicDark;
@@ -49,6 +51,11 @@ canvas {
 		border-left: none;
 		font-size: inherit;
 
+		&.quote {
+			&:before { content:"\201C"; margin-left: -0.56em; }
+			&:after { content:"\201D";}
+		}
+
 		span {
 			line-height: 1.2 !important;
 		}
@@ -56,6 +63,7 @@ canvas {
 
 	.source {
 		font-size: @font-size-base *1.5;
+		font-weight: normal;
 
 		&:before {
 			content: '\2014';
@@ -69,9 +77,21 @@ canvas {
 		}
 	}
 
-	.logo {
+	.logo-wrapper {
 		position: absolute;
-		bottom: @grid-gutter-width;
-		right: @grid-gutter-width;
+		bottom: @grid-gutter-width * 2;
+		right: @grid-gutter-width * 2;
+		font-size: 46px;
+
+		span {
+			display: none;
+
+			.music& {
+				display: inline;
+				font-weight: normal;
+				color: #fff;
+				-webkit-font-smoothing: antialiased;
+			}
+		}
 	}
 }
