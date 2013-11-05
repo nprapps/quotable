@@ -32,6 +32,11 @@ $(function() {
         $('.quote').addClass('music');
     });
 
+    $('#fontsize').on('change', function(){
+        var font_size = $(this).val().toString() + 'px';
+        $('.quote').css('font-size', font_size);
+    });
+
     var editor = new MediumEditor('.quote', {
         buttons: ['bold', 'italic']
     });

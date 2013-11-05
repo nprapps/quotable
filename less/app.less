@@ -18,6 +18,10 @@ canvas {
 .controls-wrapper {
 	width: 640px;
 	margin: @line-height-computed auto;
+
+	.btn-group {
+		margin-right: @grid-gutter-width;
+	}
 }
 
 
@@ -28,6 +32,8 @@ canvas {
 	margin: @grid-gutter-width auto 0;
 	position: relative;
 	padding: @grid-gutter-width;
+	font-size: @font-size-base * 3;
+	line-height: 1.2 !important;
 
 	&.music {
 		background: @musicDark;
@@ -41,8 +47,7 @@ canvas {
 	blockquote {
 		padding: 0;
 		border-left: none;
-		font-size: @font-size-base * 3;
-		line-height: 1.2 !important;
+		font-size: inherit;
 
 		span {
 			line-height: 1.2 !important;
