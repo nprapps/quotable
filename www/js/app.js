@@ -37,4 +37,10 @@ $(function() {
     var editor = new MediumEditor('.poster', {
         buttons: ['bold', 'italic']
     });
+
+   document.querySelector(".poster").addEventListener("paste", function(e) {
+        e.preventDefault();
+        var text = e.clipboardData.getData("text/plain");
+        document.execCommand("insertHTML", false, text);
+    });
 });
