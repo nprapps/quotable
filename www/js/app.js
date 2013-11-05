@@ -1,11 +1,12 @@
 $(function() {
     $('#save').on('click', function(){
+        $('canvas').remove();
         html2canvas($('.poster'), {
           onrendered: function(canvas) {
             document.body.appendChild(canvas);
             window.oCanvas = document.getElementsByTagName("canvas");
             window.oCanvas = window.oCanvas[0];
-            var strDataURI = window.oCanvas.toDataURL("image/jpeg"); 
+            // var strDataURI = window.oCanvas.toDataURL("image/jpeg"); 
             Canvas2Image.saveAsPNG(oCanvas);
           }
         });
