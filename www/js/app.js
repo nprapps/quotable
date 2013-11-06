@@ -21,6 +21,7 @@ function process_text(){
 $(function() {
     $('#save').on('click', function(){
         $('canvas').remove();
+        process_text();
 
         html2canvas($('.poster'), {
           onrendered: function(canvas) {
