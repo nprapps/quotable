@@ -64,10 +64,10 @@ $(function() {
     });
 
     var editor = new MediumEditor('.poster blockquote, .source', {
-        buttons: ['bold', 'italic']
+        buttons: ['italic']
     });
 
-    $('.poster, .source').on('blur', _.debounce(process_text, 100));
+    $('.poster, .source').on('blur', process_text);
 
    document.querySelector(".poster").addEventListener("paste", function(e) {
         e.preventDefault();
