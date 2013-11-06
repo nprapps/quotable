@@ -80,8 +80,8 @@ $('.poster, .source').on('blur', function(){
     process_text();
 });
 
-document.querySelector(".poster").addEventListener("paste", function(e) {
-    e.preventDefault();
-    var text = e.clipboardData.getData("text/plain");
-    document.execCommand("insertHTML", false, smarten(text));
-});
+// document.querySelector(".poster blockquote, .source").addEventListener("paste", function(e) {
+//     e.preventDefault();
+//     var text = e.clipboardData.getData("text/plain");
+//     document.execCommand("insertHTML", false, smarten(text));
+// });
