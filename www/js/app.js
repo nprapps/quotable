@@ -76,7 +76,9 @@ $(function() {
         buttons: ['italic']
     });
 
-    $('.poster, .source').on('blur', process_text);
+    $('.poster, .source').on('focusout', function(){
+        process_text();
+    });
 
     document.querySelector(".poster").addEventListener("paste", function(e) {
         e.preventDefault();
