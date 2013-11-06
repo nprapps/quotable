@@ -18,71 +18,70 @@ function process_text(){
     });
 }
 
-$(function() {
-    $('#save').on('click', function(){
-        $('canvas').remove();
-        process_text();
+$('#save').on('click', function(){
+    $('canvas').remove();
+    process_text();
 
-        html2canvas($('.poster'), {
-          onrendered: function(canvas) {
-            document.body.appendChild(canvas);
-            window.oCanvas = document.getElementsByTagName("canvas");
-            window.oCanvas = window.oCanvas[0];
-            var strDataURI = window.oCanvas.toDataURL();
+    html2canvas($('.poster'), {
+      onrendered: function(canvas) {
+        document.body.appendChild(canvas);
+        window.oCanvas = document.getElementsByTagName("canvas");
+        window.oCanvas = window.oCanvas[0];
+        var strDataURI = window.oCanvas.toDataURL();
 
-            var a = $("<a>").attr("href", strDataURI).attr("download", "quote.png").appendTo("body");
+        var a = $("<a>").attr("href", strDataURI).attr("download", "quote.png").appendTo("body");
 
-            a[0].click();
+        a[0].click();
 
-            a.remove();
+        a.remove();
 
-            $('#download').attr('href', strDataURI).attr('target', '_blank');
-            $('#download').trigger('click');
-          }
-        });
+        $('#download').attr('href', strDataURI).attr('target', '_blank');
+        $('#download').trigger('click');
+      }
     });
+});
 
-    $('#news').on('click', function(){
-        $(this).toggleClass('btn-primary btn-default');
-        $('#music').toggleClass('btn-primary btn-default');
-        $('.poster').toggleClass('music');
-    });
+$('#news').on('click', function(){
+    $(this).toggleClass('btn-primary btn-default');
+    $('#music').toggleClass('btn-primary btn-default');
+    $('.poster').toggleClass('music');
+});
 
-    $('#music').on('click', function(){
-        $(this).toggleClass('btn-primary btn-default');
-        $('#news').toggleClass('btn-primary btn-default');
-        $('.poster').toggleClass('music');
-    });
+$('#music').on('click', function(){
+    $(this).toggleClass('btn-primary btn-default');
+    $('#news').toggleClass('btn-primary btn-default');
+    $('.poster').toggleClass('music');
+});
 
-    $('#quote').on('click', function(){
-        $(this).find('button').toggleClass('btn-primary btn-default');
-        $('.poster').toggleClass('quote');
-    });
+$('#quote').on('click', function(){
+    $(this).find('button').toggleClass('btn-primary btn-default');
+    $('.poster').toggleClass('quote');
+});
 
-    $('#fontsize').on('change', function(){
-        var font_size = $(this).val().toString() + 'px';
-        $('.poster').css('font-size', font_size);
-    });
+$('#fontsize').on('change', function(){
+    var font_size = $(this).val().toString() + 'px';
+    $('.poster').css('font-size', font_size);
+});
 
-    $('#show').on('keyup', function(){
-        var input_text = $(this).val();
-        $('.source').find('em, span').remove();
-        $('.source')
-            .text($.trim($('.source').text()))
-            .append('<span>,</span> <em>' + input_text + '</em>');
-    });
+$('#show').on('keyup', function(){
+    var input_text = $(this).val();
+    $('.source').find('em, span').remove();
+    $('.source')
+        .text($.trim($('.source').text()))
+        .append('<span>,</span> <em>' + input_text + '</em>');
+});
 
-    var editor = new MediumEditor('.poster blockquote, .source', {
-        buttons: ['italic']
-    });
+var editable = document.querySelectorAll('.poster blockquote, .source');
+var editor = new MediumEditor(editable, {
+    buttons: ['italic']
+});
 
-    $('.poster, .source').on('focusout', function(){
-        process_text();
-    });
+$('.poster, .source').on('blur', function(){
+    process_text();
+});
 
-    document.querySelector(".poster").addEventListener("paste", function(e) {
-        e.preventDefault();
-        var text = e.clipboardData.getData("text/plain");
-        document.execCommand("insertHTML", false, smarten(text));
-    });
+document.querySelector(".poster").addEventListener("paste", function(e) {
+    e.preventDefault();
+    var text = e.clipboardData.getData("text/plain");
+    document.execCommand("insertHTML", false, smarten(text));
 });
