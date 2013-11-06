@@ -88,7 +88,7 @@ header {
 	padding: @grid-gutter-width * 2;
 	font-size: 75px;
 	line-height: 1 !important;
-	font-weight: 700;
+	
 
 	&.music {
 		background: @musicDark;
@@ -99,12 +99,33 @@ header {
 		}
 	}
 
+	.quote& {
+		.left-quote {
+			content:"\201C";
+			display: block;
+			position: absolute;
+			top: @grid-gutter-width * 2;
+			left: @grid-gutter-width * 2;
+			font-weight: 700;
+			margin-left: -0.55em;
+		}
+	}
+
+	.left-quote,
+	.right-quote {
+		display: none;
+	}
+
 	blockquote {
 		padding: 0;
 		margin: 0;
 		border-left: none;
 		font-size: inherit;
 		line-height: 100%;
+		font-weight: bold;
+		display: block;
+
+
 
 		p {
 			font-size: inherit;
@@ -113,28 +134,19 @@ header {
 			line-height: 100%;
 		}
 
-		.left-quote,
-		.right-quote {
-			display: none;
+		&:last-child {
+			color: red;
 		}
 
-		&.quote {
-			// &:before { display: block; content:"\201C"; margin-left: -0.56em; }
-			// &:after { content:"\201D"; }
 
-			// &:before,
-			// &:after { font-size: inherit; }
 
-			.left-quote,
-			.right-quote {
-				display: inline;
-				line-height: 1 !important;
-				margin: 0;
+		.quote& {
+
+			p:last-child:after {
+				content:"\201D";
+				font-weight: 700;
 			}
 
-			.left-quote {
-				margin-left: -0.56em;
-			}
 		}
 
 		span {

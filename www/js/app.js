@@ -1,6 +1,27 @@
+var $text = $('.poster blockquote p, .source');
+
+// Change straight quotes to curly and double hyphens to em-dashes.
+function smarten(a) {
+  a = a.replace(/(^|[-\u2014\s(\["])'/g, "$1\u2018");       // opening singles
+  a = a.replace(/'/g, "\u2019");                            // closing singles & apostrophes
+  a = a.replace(/(^|[-\u2014/\[(\u2018\s])"/g, "$1\u201c"); // opening doubles
+  a = a.replace(/"/g, "\u201d");                            // closing doubles
+  a = a.replace(/--/g, "\u2014");                           // em-dashes
+  return a
+};
+
+function process_text(){
+    $text.each(function(){
+        var raw_text = $(this).text();
+        
+        $(this).text(smarten(raw_text));
+    });
+}
+
 $(function() {
     $('#save').on('click', function(){
         $('canvas').remove();
+
         html2canvas($('.poster'), {
           onrendered: function(canvas) {
             document.body.appendChild(canvas);
@@ -35,7 +56,7 @@ $(function() {
 
     $('#quote').on('click', function(){
         $(this).find('button').toggleClass('btn-primary btn-default');
-        $('.poster blockquote').toggleClass('quote');
+        $('.poster').toggleClass('quote');
     });
 
     $('#fontsize').on('change', function(){
@@ -43,13 +64,15 @@ $(function() {
         $('.poster').css('font-size', font_size);
     });
 
-    var editor = new MediumEditor('.poster', {
+    var editor = new MediumEditor('.poster blockquote, .source', {
         buttons: ['bold', 'italic']
     });
+
+    $('.poster blockquote, .source').on('blur', process_text);
 
    document.querySelector(".poster").addEventListener("paste", function(e) {
         e.preventDefault();
         var text = e.clipboardData.getData("text/plain");
-        document.execCommand("insertHTML", false, text);
+        document.execCommand("insertHTML", false, smarten(text));
     });
 });
