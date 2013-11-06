@@ -7,8 +7,8 @@ function smarten(a) {
   a = a.replace(/(^|[-\u2014/\[(\u2018\s])"/g, "$1\u201c"); // opening doubles
   a = a.replace(/"/g, "\u201d");                            // closing doubles
   a = a.replace(/--/g, "\u2014");                           // em-dashes
-  return a
-};
+  return a;
+}
 
 function process_text(){
     $text.each(function(){
@@ -36,7 +36,7 @@ $(function() {
 
             a.remove();
 
-            $('#download').attr('href', strDataURI);
+            $('#download').attr('href', strDataURI).attr('target', '_blank');
             $('#download').trigger('click');
           }
         });
@@ -64,13 +64,21 @@ $(function() {
         $('.poster').css('font-size', font_size);
     });
 
+    $('#show').on('keyup', function(){
+        var input_text = $(this).val();
+        $('.source').find('em, span').remove();
+        $('.source')
+            .text($.trim($('.source').text()))
+            .append('<span>,</span> <em>' + input_text + '</em>');
+    });
+
     var editor = new MediumEditor('.poster blockquote, .source', {
         buttons: ['italic']
     });
 
     $('.poster, .source').on('blur', process_text);
 
-   document.querySelector(".poster").addEventListener("paste", function(e) {
+    document.querySelector(".poster").addEventListener("paste", function(e) {
         e.preventDefault();
         var text = e.clipboardData.getData("text/plain");
         document.execCommand("insertHTML", false, smarten(text));

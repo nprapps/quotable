@@ -162,9 +162,22 @@ header {
 		display: inline-block;		
 		margin-top: 0;
 
-		&:focus {
-			border: none;
-			outline: none;
+		.editable {
+			
+			.content & {
+				display: inline-block !important;
+			}
+
+			&:focus {
+				border: none;
+				outline: none;
+			}			
+		}
+
+		.show-credit {
+			span {
+				font-style: normal;
+			}
 		}
 	}
 
