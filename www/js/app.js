@@ -12,9 +12,9 @@ function smarten(a) {
 
 function process_text(){
     $text.each(function(){
-        var raw_text = $(this).text();
+        var raw_text = $(this).html();
         
-        $(this).text(smarten(raw_text));
+        $(this).html(smarten(raw_text));
     });
 }
 
@@ -37,7 +37,6 @@ $(function() {
 
             $('#download').attr('href', strDataURI);
             $('#download').trigger('click');
-            // Canvas2Image.saveAsPNG(oCanvas);
           }
         });
     });
@@ -68,7 +67,7 @@ $(function() {
         buttons: ['bold', 'italic']
     });
 
-    $('.poster blockquote, .source').on('blur', process_text);
+    $('.poster, .source').on('blur', _.debounce(process_text, 100));
 
    document.querySelector(".poster").addEventListener("paste", function(e) {
         e.preventDefault();
