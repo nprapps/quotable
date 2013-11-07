@@ -71,11 +71,13 @@ $('#show').on('keyup', function(){
         .append('<span>,</span> <em>' + input_text + '</em>');
 });
 
+// This event is interfering with the medium editor in some browsers
+// $('.poster').on('blur', function(){
+//     process_text();
+// });
+
+
 var editable = document.querySelectorAll('.poster blockquote, .source');
 var editor = new MediumEditor(editable, {
     buttons: ['italic']
-});
-
-$('.poster, .source').on('blur', function(){
-    process_text();
 });
