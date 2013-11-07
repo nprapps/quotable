@@ -10,6 +10,13 @@ function smarten(a) {
   return a;
 }
 
+function convert_to_slug(text){
+    return text
+        .toLowerCase()
+        .replace(/[^\w ]+/g,'')
+        .replace(/ +/g,'-');
+}
+
 function process_text(){
     $text.each(function(){
         var raw_text = $(this).html();
@@ -18,7 +25,7 @@ function process_text(){
     });
 }
 
-$('#save').on('click', function(){
+function save_image(){
     $('canvas').remove();
     process_text();
 
@@ -29,7 +36,10 @@ $('#save').on('click', function(){
         window.oCanvas = window.oCanvas[0];
         var strDataURI = window.oCanvas.toDataURL();
 
-        var a = $("<a>").attr("href", strDataURI).attr("download", "quote.png").appendTo("body");
+        var quote = $('blockquote').text().split(' ', 5);
+        var filename = convert_to_slug(quote.join(' '));
+
+        var a = $("<a>").attr("href", strDataURI).attr("download", "quote-" + filename + ".png").appendTo("body");
 
         a[0].click();
 
@@ -39,7 +49,9 @@ $('#save').on('click', function(){
         $('#download').trigger('click');
       }
     });
-});
+}
+
+$('#save').on('click', save_image);
 
 $('#news').on('click', function(){
     $(this).toggleClass('btn-primary btn-default');
