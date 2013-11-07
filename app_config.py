@@ -31,8 +31,8 @@ PROJECT_FILENAME = 'quotable'
 """
 DEPLOYMENT
 """
-PRODUCTION_S3_BUCKETS = ['apps.npr.org', 'apps2.npr.org']
-STAGING_S3_BUCKETS = ['stage-apps.npr.org']
+PRODUCTION_S3_BUCKETS = ['tools.apps.npr.org']
+STAGING_S3_BUCKETS = ['stage-tools.apps.npr.org']
 
 PRODUCTION_SERVERS = ['cron.nprapps.org']
 STAGING_SERVERS = ['50.112.92.131']
