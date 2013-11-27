@@ -21,6 +21,7 @@ canvas {
 	width: 100%;
 	max-width: 960px;
 	margin: 0 auto;
+	padding-left: @grid-gutter-width * 2.5;
 
 	.poster-wrapper,
 	.container {
@@ -57,10 +58,32 @@ header {
 	padding: @line-height-computed / 2 @grid-gutter-width / 2;
 	color: @gray-lighter;
 
+	a {
+		color: @gray-lighter;
+	}
+
+	a:hover {
+		color: @gray;
+		text-decoration: none;
+	}
+	
+	.icon-wrapper {
+		position: fixed;
+		top: 0;
+		left: 0;
+		padding: 30px 15px 0 15px;
+		height: 89px;
+		border-style: solid;
+		border-color: @gray-lighter;
+		border-width: 0 1px 0 0;
+		font-size: 35px;
+	}
+
 	.header-wrapper {
 		max-width: 960px;
 		margin: 0 auto;
 		padding: 0 @grid-gutter-width / 2;
+		padding-left: @grid-gutter-width * 2.5;
 	}
 	
 
