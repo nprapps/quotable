@@ -91,11 +91,11 @@ $(function(){
         $poster.removeClass('square two-to-one').addClass($(this).attr('id'));
 
         if ($poster.hasClass('two-to-one')){
-            adjust_font_size(36);
-            $font_size.val(36);
+            adjust_font_size(32);
+            $font_size.val(32);
         } else {
-            adjust_font_size(72);
-            $font_size.val(72);
+            adjust_font_size(90);
+            $font_size.val(90);
         }
     });
 
@@ -116,9 +116,11 @@ $(function(){
             .append('<span>,</span> <em>' + input_text + '</em>');
     });
 
-    // This event is interfering with the medium editor in some browsers
-    // $('h1').on('keyup', function(){
-    //         process_text();
+    // // This event is interfering with the medium editor in some browsers
+    // $('blockquote').on('keyup', function(){
+
+    //     console.log($(this)[0].selectionStart);
+    //     process_text();
     // });
 
 
