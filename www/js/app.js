@@ -8,6 +8,7 @@ var $font_size = null;
 var $show = null;
 var $source = null;
 var $quote = null;
+var $logo_wrapper = null;
 
 var quotes = [
     {
@@ -67,6 +68,13 @@ function process_text(){
 }
 
 function save_image(){
+    // first check if the quote actually fits
+
+    if (($source.offset().top + $source.height()) > $logo_wrapper.offset().top){
+        alert("Your quote doesn't quite fit. Shorten the text or choose a smaller font-size.");
+        return;
+    }
+
     $('canvas').remove();
     process_text();
 
@@ -110,6 +118,7 @@ $(function(){
     $show = $('#show');
     $source = $('.source');
     $quote = $('#quote');
+    $logo_wrapper = $('.logo-wrapper');
 
     var quote = quotes[Math.floor(Math.random()*quotes.length)];
     if (quote.size){
