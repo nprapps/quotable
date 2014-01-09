@@ -1,4 +1,13 @@
-var $text = $('.poster blockquote p, .source');
+var $text = null;
+var $save = null;
+var $poster = null;
+var $theme_buttons = null;
+var $aspect_ratio_buttons = null;
+var $quote = null;
+var $font_size = null;
+var $show = null;
+var $source = null;
+var $quote = null;
 
 // Change straight quotes to curly and double hyphens to em-dashes.
 function smarten(a) {
@@ -29,7 +38,7 @@ function save_image(){
     $('canvas').remove();
     process_text();
 
-    html2canvas($('.poster'), {
+    html2canvas($poster, {
       onrendered: function(canvas) {
         document.body.appendChild(canvas);
         window.oCanvas = document.getElementsByTagName("canvas");
@@ -51,45 +60,70 @@ function save_image(){
     });
 }
 
-$('#save').on('click', save_image);
+function adjust_font_size(size){
+    var font_size = size.toString() + 'px';
+    $poster.css('font-size', font_size);
+}
 
-$('#news').on('click', function(){
-    $(this).toggleClass('btn-primary btn-default');
-    $('#music').toggleClass('btn-primary btn-default');
-    $('.poster').toggleClass('music');
-});
+$(function(){
+    $text = $('.poster blockquote p, .source');
+    $save = $('#save');
+    $poster = $('.poster');
+    $theme_buttons = $('#theme .btn');
+    $aspect_ratio_buttons = $('#aspect-ratio .btn');
+    $font_size = $('#fontsize');
+    $show = $('#show');
+    $source = $('.source');
+    $quote = $('#quote');
 
-$('#music').on('click', function(){
-    $(this).toggleClass('btn-primary btn-default');
-    $('#news').toggleClass('btn-primary btn-default');
-    $('.poster').toggleClass('music');
-});
+    $save.on('click', save_image);
 
-$('#quote').on('click', function(){
-    $(this).find('button').toggleClass('btn-primary btn-default');
-    $('.poster').toggleClass('quote');
-});
+    $theme_buttons.on('click', function(){
+        $theme_buttons.removeClass().addClass('btn btn-default');
+        $(this).addClass('btn-primary');
+        $poster.removeClass('poster-news poster-music poster-fresh-air poster-snap-judgement')
+                    .addClass('poster-' + $(this).attr('id'));
+    });
 
-$('#fontsize').on('change', function(){
-    var font_size = $(this).val().toString() + 'px';
-    $('.poster').css('font-size', font_size);
-});
+    $aspect_ratio_buttons.on('click', function(){
+        $aspect_ratio_buttons.removeClass().addClass('btn btn-default');
+        $(this).addClass('btn-primary');
+        $poster.removeClass('square two-to-one').addClass($(this).attr('id'));
 
-$('#show').on('keyup', function(){
-    var input_text = $(this).val();
-    $('.source').find('em, span').remove();
-    $('.source')
-        .text($.trim($('.source').text()))
-        .append('<span>,</span> <em>' + input_text + '</em>');
-});
+        if ($poster.hasClass('two-to-one')){
+            adjust_font_size(36);
+            $font_size.val(36);
+        } else {
+            adjust_font_size(72);
+            $font_size.val(72);
+        }
+    });
 
-// This event is interfering with the medium editor in some browsers
-// $('h1').on('keyup', function(){
-//         process_text();
-// });
+    $quote.on('click', function(){
+        $(this).find('button').toggleClass('btn-primary btn-default');
+        $poster.toggleClass('quote');
+    });
+
+    $font_size.on('change', function(){
+        adjust_font_size($(this).val());
+    });
+
+    $show.on('keyup', function(){
+        var input_text = $(this).val();
+        $source.find('em, span').remove();
+        $source
+            .text($.trim($('.source').text()))
+            .append('<span>,</span> <em>' + input_text + '</em>');
+    });
+
+    // This event is interfering with the medium editor in some browsers
+    // $('h1').on('keyup', function(){
+    //         process_text();
+    // });
 
 
-var editable = document.querySelectorAll('.poster blockquote, .source');
-var editor = new MediumEditor(editable, {
-    buttons: ['italic']
+    var editable = document.querySelectorAll('.poster blockquote, .source');
+    var editor = new MediumEditor(editable, {
+        buttons: ['italic']
+    });
 });

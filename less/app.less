@@ -18,7 +18,7 @@ canvas {
 .content {
 	display: table;
 	width: 100%;
-	max-width: 960px;
+	max-width: 1200px;
 	margin: 0 auto;
 	padding-left: @grid-gutter-width * 2.5;
 
@@ -39,6 +39,10 @@ canvas {
 	.btn-group,
 	.btn-group + .btn {
 		margin-right: @grid-gutter-width / 2;
+	}
+
+	.btn-group-vertical .btn {
+		text-align: left;
 	}
 
 	.form-group,
@@ -79,10 +83,10 @@ header {
 	}
 
 	.header-wrapper {
-		max-width: 960px;
+		max-width: 1200px;
 		margin: 0 auto;
 		padding: 0 @grid-gutter-width / 2;
-		padding-left: @grid-gutter-width * 2.5;
+		padding-left: @grid-gutter-width * 2;
 	}
 	
 
@@ -110,14 +114,92 @@ header {
 	padding: @grid-gutter-width * 2;
 	font-size: 75px;
 	line-height: 1 !important;
-	
+	overflow: hidden;	
 
-	&.music {
+	&.two-to-one {
+		height: 320px;
+
+		blockquote {
+			margin-bottom: 20px;
+		}
+
+		.logo-wrapper {
+			img {
+				width: 150px;
+			}
+		}
+	}
+
+	&.poster-news {
+		.logo-wrapper {
+			.logo.logo-news {
+				display: inline-block !important;
+				border: none;
+
+				.two-to-one& {
+					height: 40px;
+					width: auto;
+				}
+			}
+		}
+	}
+
+	&.poster-music {
 		background: @musicDark;
 		color: @musicLight;
 
 		.logo {
 			border: 1px solid @musicLight;
+		}
+
+		.logo-wrapper {
+			background: @musicDark;
+			padding-bottom: @grid-gutter-width * 2 - 14;
+
+			.logo.logo-music {
+				display: inline-block !important;
+				border: none;
+
+				.two-to-one& {
+					width: 242px;
+					height: 65px;
+					overflow: hidden;
+					background: url('../img/npr-music-logo-small.png') no-repeat;
+					padding-left: 242px;
+				}
+			}
+		}
+	}
+
+	&.poster-snap-judgement {
+		background: #C66137;
+		color: #fff;
+
+		.logo-wrapper {
+			background: #C66137;
+			color: #fff;
+			padding-bottom: @grid-gutter-width * 2 - 14;
+
+			.logo.logo-snap-judgement {
+				display: inline-block !important;
+				border: none;
+				width: 300px;
+
+				.two-to-one& {
+					width: 150px;
+				}
+			}
+		}
+	}
+
+	&.poster-fresh-air {
+		.logo-wrapper {
+			padding-bottom: @grid-gutter-width * 2 - 14;
+
+			.logo.logo-fresh-air {
+				display: inline-block !important;
+				border: none;
+			}
 		}
 	}
 
@@ -156,7 +238,7 @@ header {
 			font-size: inherit;
 			font-weight: inherit;
 			margin: 0;
-			line-height: 100%;
+			line-height: 110%;
 
 			span {
 				line-height: inherit !important;
@@ -208,27 +290,12 @@ header {
 		right: 0;
 		text-align: right;
 		padding:  @grid-gutter-width @grid-gutter-width * 2 @grid-gutter-width * 2;
+		margin: 0;
 		font-size: 46px;
 		background: #fff;
 
-		.music& {
-			background: @musicDark;
-			padding-bottom: @grid-gutter-width * 2 - 14;
-
-			.logo {
-				display: none;
-			}
-		}
-
-		.music-logo {
-			display: none;
-
-			.music& {
-				display: inline;
-				font-weight: normal;
-				color: #fff;
-				-webkit-font-smoothing: antialiased;
-			}
+		.logo {
+			.hide;
 		}
 	}
 }

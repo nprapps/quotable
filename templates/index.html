@@ -3,23 +3,26 @@
 
 {% block outer_content %}
 <header>
-    <a href="http://tools.apps.npr.org"><div class="icon-wrapper">
-        <i class="icon-home"></i>
-    </div></a>
     <div class="header-wrapper">
         <h1>Quotable</h1>
-        <img class="pull-right" src="{{ S3_BASE_URL }}/img/npr-apps-logo.png">
+        <a class="pull-right" href="http://tools.apps.npr.org"><img src="{{ S3_BASE_URL }}/img/npr-apps-logo.png"></a>
     </div>
 </header>
 <div class="content">
     <div class="poster-wrapper">
-        <div class="poster quote">
+        <div class="poster quote poster-news">
             <span class="left-quote">&ldquo;</span>
             <blockquote><p>I&rsquo;ve made a huge mistake.</p></blockquote>
 
             <p class="source">&mdash; G.O.B.</p>
 
-            <p class="logo-wrapper"><img class="logo" src="./img/npr-home.png"><img class="music-logo" src="./img/npr-music.png"></p>
+            <p class="logo-wrapper">
+                <img class="logo logo-news" src="./img/npr-home.png">
+                <img class="logo logo-music" src="./img/npr-music.png">
+                <img class="logo logo-fresh-air" src="./img/fresh-air.png">
+                <img class="logo logo-snap-judgement" src="./img/snap-judgement-logo.png">
+
+            </p>
         </div>
     </div>
     <div class="container">
@@ -28,9 +31,18 @@
                 <div class="controls-wrapper">
                     <div class="form-group">
                         <label>Theme</label>
-                        <div class="btn-group">
-                            <button id="news" class="btn btn-primary">News</button>
+                        <div id="theme" class="btn-group-vertical">
+                            <button id="news" class="btn btn-default btn-primary">News</button>
                             <button id="music" class="btn btn-default">Music</button>
+                            <button id="fresh-air" class="btn btn-default">Fresh Air</button>
+                            <button id="snap-judgement" class="btn btn-default">Snap Judgement</button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Aspect ratio</label>
+                        <div id="aspect-ratio" class="btn-group">
+                            <button id="square" class="btn btn-default btn-primary">Square</button>
+                            <button id="two-to-one" class="btn btn-default">2:1 (Twitter)</button>
                         </div>
                     </div>
                     <div class="form-group">
@@ -42,7 +54,7 @@
                     </div>
                     <div class="form-group">
                         <label for="fontsize">Font Size</label>
-                        <input id="fontsize" name="fontsize" type="range" min="42" max="96">
+                        <input id="fontsize" name="fontsize" type="range" min="32" max="106">
                     </div>
                     <div class="form-group">
                         <label for="show">Show Attribution</label>
