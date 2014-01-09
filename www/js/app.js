@@ -9,6 +9,22 @@ var $show = null;
 var $source = null;
 var $quote = null;
 
+var quotes = [
+    {
+        "quote": "I'd been drinking.",
+        "source": "Dennis Rodman"
+    },
+    {
+        "quote": "I've made a huge mistake.",
+        "source": "G.O.B."
+    },
+    {
+        "quote": "Yes, I have smoked crack cocaine",
+        "source": "Toronto Mayor Rob Ford",
+        "size": 65
+    },
+];
+
 // Change straight quotes to curly and double hyphens to em-dashes.
 function smarten(a) {
   a = a.replace(/(^|[-\u2014\s(\["])'/g, "$1\u2018");       // opening singles
@@ -63,6 +79,9 @@ function save_image(){
 function adjust_font_size(size){
     var font_size = size.toString() + 'px';
     $poster.css('font-size', font_size);
+    if ($font_size.val() !== size){
+        $font_size.val(size);
+    };
 }
 
 $(function(){
@@ -75,6 +94,14 @@ $(function(){
     $show = $('#show');
     $source = $('.source');
     $quote = $('#quote');
+
+    var quote = quotes[Math.floor(Math.random()*quotes.length)];
+    if (quote.size){
+        adjust_font_size(quote.size);
+    }
+    $('blockquote p').text(quote.quote);
+    $source.html('&mdash; ' + quote.source);
+    process_text();
 
     $save.on('click', save_image);
 
