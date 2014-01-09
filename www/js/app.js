@@ -19,9 +19,9 @@ function convert_to_slug(text){
 
 function process_text(){
     $text.each(function(){
-        var raw_text = $(this).html();
+        var raw_text = $.trim($(this).html());
         
-        $(this).html(smarten(raw_text));
+        $(this).html(smarten(raw_text)).find('br').remove();
     });
 }
 
@@ -84,8 +84,8 @@ $('#show').on('keyup', function(){
 });
 
 // This event is interfering with the medium editor in some browsers
-// $('.poster').on('blur', function(){
-//     process_text();
+// $('h1').on('keyup', function(){
+//         process_text();
 // });
 
 
