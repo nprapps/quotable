@@ -23,7 +23,23 @@ var quotes = [
         "source": "Toronto Mayor Rob Ford",
         "size": 65
     },
+    {
+        "quote": "Annyong.",
+        "source": "Annyong",
+        "size": 90
+    },
+    {
+        "quote": "STEVE HOLT!",
+        "source": "Steve Holt",
+        "size": 65
+    },
+    {
+        "quote": "Whoa, whoa, whoa. There's still plenty of meat on that bone. Now you take this home, throw it in a pot, add some broth, a potato. Baby, you've got a stew going.",
+        "source": "Carl Weathers",
+        "size": 40
+    }
 ];
+
 
 // Change straight quotes to curly and double hyphens to em-dashes.
 function smarten(a) {
