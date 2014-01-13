@@ -34,14 +34,6 @@
     
     <link rel="stylesheet" type="text/css" href="../css/app.min.css" />
 
-    <!-- AD CODE -->
-    <script>
-        NPR = {};
-        NPR.PageInfo = {};
-        NPR.PageInfo.getUrlParameter = function (param) {
-            return false;
-        };
-    </script>
 
     <!-- JS -->
     
@@ -53,85 +45,6 @@
     
     
     <script type="text/javascript" src="../js/app-header.min.js"></script>
-
-    <script>
-        googletag.cmd.push(function() {
-            try {
-                
-                if (DFP.shouldRenderForDevice('desktop')) {
-                    googletag.defineSlot("/6735/n6735.NPRTEST/News_NPR_News_Investigations", [[300,250],[300,600]], 'ad-desktop').addService(googletag.pubads());
-                }                    
-                if (DFP.shouldRenderForDevice('88')) {
-                    googletag.defineSlot("/6735/n6735.NPRTEST/News_NPR_News_Investigations", [88,31], 'ad-88').addService(googletag.pubads());
-                }                    
-           
-                googletag.pubads().setTargeting('storyId', '203618536');
-                googletag.pubads().setTargeting('testserver', 'true');
-                
-                // device detection to send to ad server
-                var deviceString = '';
-                var ua = navigator.userAgent.toLowerCase();
-                if (ua.indexOf("android") > -1) {
-                    googletag.pubads().setTargeting('device', 'android');
-                }
-                else if (ua.match(/(iPad|iPhone|iPod)/i)) {
-                    googletag.pubads().setTargeting('device', 'ios');
-                }
-                
-                
-                
-                if (typeof DFP.queryParameters.sc === 'string' && DFP.queryParameters.sc.length > 0) {
-                    scValue = DFP.queryParameters.sc;
-                }
-                else if (typeof document.referrer === 'string' && document.referrer.search('facebook.com') > -1) {
-                    scValue = 'fb';
-                }
-                else if (typeof DFP.queryParameters.ft === 'string') {
-                    scValue = DFP.queryParameters.ft;
-                }
-                googletag.pubads().setTargeting('sc', scValue);
-                
-                
-                var utm_source = typeof DFP.queryParameters.utm_source === 'string' && DFP.queryParameters.utm_source.length > 0?DFP.queryParameters.utm_source:'';
-                var utm_medium = typeof DFP.queryParameters.utm_medium === 'string' && DFP.queryParameters.utm_medium.length > 0?DFP.queryParameters.utm_medium:'';
-                googletag.pubads().setTargeting('utm_source', utm_source);
-                googletag.pubads().setTargeting('utm_medium', utm_medium);
-                
-                var orient = '';
-                if (NPR.Devices.isOnPhone() || NPR.Devices.isOnTablet()) {
-                    if (window.orientation == 0 || window.orientation == 180) {
-                        orient = 'portrait';
-                    } else if (window.orientation == 90 || window.orientation == -90) {
-                        orient = 'landscape';
-                    }
-                }
-                googletag.pubads().setTargeting('orient', orient);                        
-                        
-                googletag.pubads().enableSingleRequest();
-                googletag.pubads().collapseEmptyDivs();
-                googletag.enableServices();
-            } catch(e) {
-                NPR.messaging.exception(e, 'Define Google Publisher Tags', NPR.messaging.constants.SPONSORSHIP_ERROR);
-            }              
-        }); 
-    </script>
-
-    
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:site" content="@nprapps">
-    <meta name="twitter:image" content="" />
-
-    
-    <meta property="og:title" content="quotable" />
-    <meta property="og:url" content="http://tools.apps.npr.org/quotable/" />
-    <meta property="og:type" content="article" />
-    <meta property="og:description" content="An opinionated project template for (mostly) server-less apps." />
-    <meta property="og:image" content="" />
-    <meta property="og:site_name" content="NPR.org" />
-    <meta property="fb:app_id" content="138837436154588" />
-
-    
-    <meta name="thumbnail" content="" />
 
     
     
@@ -168,6 +81,10 @@
             <div class="form controls col-md-12">
                 <div class="controls-wrapper">
                     <div class="form-group">
+                        <label for="fontsize">Font Size</label>
+                        <input id="fontsize" name="fontsize" type="range" min="24" max="120" value="90">
+                    </div>
+                    <div class="form-group">
                         <label>Theme</label>
                         <div id="theme" class="btn-group-vertical">
                             <button id="news" class="btn btn-default btn-primary">News</button>
@@ -189,10 +106,6 @@
                             <button class="btn btn-primary">On</button>
                             <button class="btn btn-default">Off</button>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="fontsize">Font Size</label>
-                        <input id="fontsize" name="fontsize" type="range" min="24" max="120" value="90">
                     </div>
                     <div class="form-group">
                         <label for="show">Show Attribution</label>
