@@ -125,7 +125,7 @@ $(function(){
         adjust_font_size(quote.size);
     }
     $('blockquote p').text(quote.quote);
-    $source.html('&mdash; ' + quote.source);
+    $source.html('&mdash;&thinsp;' + quote.source);
     process_text();
 
     $save.on('click', save_image);
@@ -165,7 +165,7 @@ $(function(){
         $source.find('em, span').remove();
         $source
             .text($.trim($('.source').text()))
-            .append('<span>,</span> <em>' + input_text + '</em>');
+            .append('<span>' + input_text + '</span>');
     });
 
     // // This event is interfering with the medium editor in some browsers
