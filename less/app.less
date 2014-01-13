@@ -73,7 +73,7 @@ header {
 		color: @gray;
 		text-decoration: none;
 	}
-	
+
 	.icon-wrapper {
 		position: fixed;
 		top: 0;
@@ -91,7 +91,7 @@ header {
 		margin: 0 auto;
 		padding: 0 @grid-gutter-width / 2;
 	}
-	
+
 
 	h1 {
 		display: inline-block;
@@ -121,15 +121,29 @@ header {
 
 	&.two-to-one {
 		height: 320px;
+		padding: @grid-gutter-width;
+
+		.quote& {
+			.left-quote {
+				top: @grid-gutter-width;
+				left: @grid-gutter-width;
+			}
+		}
 
 		blockquote {
 			margin-bottom: 20px;
 		}
 
 		.logo-wrapper {
+			padding: @grid-gutter-width;
+
 			img {
 				width: 150px;
 			}
+		}
+
+		p.source {
+			font-size: @font-size-base * 1.3;
 		}
 	}
 
