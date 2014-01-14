@@ -130,7 +130,7 @@ canvas {
 header {
 	background: @gray-darker;
 	margin: 0;
-	padding: @line-height-computed / 2 @grid-gutter-width / 2;
+	padding: 25px @grid-gutter-width / 2;
 	color: @gray-lighter;
 
 	a {
@@ -165,13 +165,37 @@ header {
 		display: inline-block;
 		text-transform: uppercase;
 		font-weight: normal;
+		line-height: 32px;
+		margin: 0;
 		-webkit-font-smoothing: antialiased;
 	}
 
+	// img {
+	// 	position: relative;
+	// 	top: 5px;
+	// 	height: 20px;
+	// 	margin: @line-height-computed 0;
+	// }
+
 	img {
-		position: relative;
-		top: 5px;
-		margin: @line-height-computed 0;
+	    height: 20px;
+	    width: auto;
+	    border: 1px solid #eee;
+	    margin-right: 5px;
+	}
+	
+	a.toolkit-link { 
+	    float: right;
+	    line-height: 32px;
+	    margin-right: - @grid-gutter-width / 2;
+	    font-size: 16px;
+	    text-transform: lowercase;
+	    -webkit-font-smoothing: antialiased;
+
+	    &:hover {
+	    	color: #eee;
+	    	opacity: 0.7;
+	    }
 	}
 }
 
