@@ -209,39 +209,7 @@ header {
 	padding: @grid-gutter-width * 2;
 	font-size: 90px;
 	line-height: 1 !important;
-	overflow: hidden;	
-
-	&.two-to-one {
-		height: 320px;
-		padding: @grid-gutter-width;
-
-		.quote& {
-			.left-quote {
-				top: @grid-gutter-width;
-				left: @grid-gutter-width;
-			}
-		}
-
-		blockquote {
-			margin-bottom: 20px;
-		}
-
-		.logo-wrapper {
-			padding: @grid-gutter-width;
-
-			img {
-				width: 150px;
-			}
-		}
-
-		p.source {
-			font-size: @font-size-base * 1.3;
-		}
-
-		p.source span {
-			font-size: @font-size-base * 1.1;
-		}
-	}
+	overflow: hidden;
 
 	&.poster-news {
 		.logo-wrapper {
@@ -313,6 +281,42 @@ header {
 				display: inline-block !important;
 				border: none;
 			}
+		}
+	}
+
+	&.two-to-one {
+		height: 320px;
+		padding: @grid-gutter-width;
+
+		.quote& {
+			.left-quote {
+				top: @grid-gutter-width;
+				left: @grid-gutter-width;
+			}
+		}
+
+		blockquote {
+			margin-bottom: 20px;
+		}
+
+		.logo-wrapper {
+			padding: @grid-gutter-width;
+
+			img {
+				width: 150px;
+			}
+
+			.poster-music& {
+				padding-bottom: @grid-gutter-width - 10;
+			}
+		}
+
+		p.source {
+			font-size: @font-size-base * 1.3;
+		}
+
+		p.source span {
+			font-size: @font-size-base * 1.1;
 		}
 	}
 
