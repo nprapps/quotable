@@ -169,10 +169,6 @@ $(function(){
             .append('<span>' + input_text + '</span>');
     });
 
-    $quote.on('paste', function(){
-        process_text();
-    });
-
     // // This event is interfering with the medium editor in some browsers
     // $('blockquote').on('keyup', function(){
 
