@@ -44,11 +44,13 @@ var quotes = [
 
 // Change straight quotes to curly and double hyphens to em-dashes.
 function smarten(a) {
+    debugger;
   a = a.replace(/(^|[-\u2014\s(\["])'/g, "$1\u2018");       // opening singles
   a = a.replace(/'/g, "\u2019");                            // closing singles & apostrophes
   a = a.replace(/(^|[-\u2014/\[(\u2018\s])"/g, "$1\u201c"); // opening doubles
   a = a.replace(/"/g, "\u201d");                            // closing doubles
   a = a.replace(/--/g, "\u2014");                           // em-dashes
+  a = a.replace(/ \u2014 /g, "\u2009\u2014\u2009");         // full spaces wrapping em dash
   return a;
 }
 
@@ -60,9 +62,9 @@ function convert_to_slug(text){
 }
 
 function process_text(){
+    $text = $('.poster blockquote p, .source');
     $text.each(function(){
         var raw_text = $.trim($(this).html());
-        
         $(this).html(smarten(raw_text)).find('br').remove();
     });
 }
@@ -168,6 +170,10 @@ $(function(){
             .append('<span>' + input_text + '</span>');
     });
 
+    $quote.on('paste', function(){
+        process_text();
+    });
+
     // // This event is interfering with the medium editor in some browsers
     // $('blockquote').on('keyup', function(){
 
@@ -178,6 +184,6 @@ $(function(){
 
     var editable = document.querySelectorAll('.poster blockquote, .source');
     var editor = new MediumEditor(editable, {
-        buttons: ['italic']
+        disableToolbar: true
     });
 });
