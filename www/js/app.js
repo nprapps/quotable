@@ -44,7 +44,6 @@ var quotes = [
 
 // Change straight quotes to curly and double hyphens to em-dashes.
 function smarten(a) {
-    debugger;
   a = a.replace(/(^|[-\u2014\s(\["])'/g, "$1\u2018");       // opening singles
   a = a.replace(/'/g, "\u2019");                            // closing singles & apostrophes
   a = a.replace(/(^|[-\u2014/\[(\u2018\s])"/g, "$1\u201c"); // opening doubles
