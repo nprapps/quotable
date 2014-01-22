@@ -25,6 +25,10 @@ What is this?
 
 Quotable is an app that lets you make sharable images out of quotations.
 
+!["I've made a huge mistake"](examples/quote-ive-made-a-huge-mistake.png)
+
+!["Annyong!"](examples/quote-annyong.png)
+
 This code is open source under the MIT license. See `LICENSE` for complete details.
 
 Assumptions
