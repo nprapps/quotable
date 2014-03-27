@@ -324,6 +324,46 @@ def _deploy_to_s3(path='.gzip'):
         local(s3cmd % (path, 's3://%s/%s/' % (bucket, app_config.PROJECT_SLUG)))
         local(s3cmd_gzip % (path, 's3://%s/%s/' % (bucket, app_config.PROJECT_SLUG)))
 
+def assets_down(path='www/assets'):
+    """
+    Download assets folder from s3 to www/assets
+    """
+    local('aws s3 sync s3://%s/%s/ %s/ --acl "public-read" --cache-control "max-age=5" --region "us-east-1"' % (app_config.ASSETS_S3_BUCKET, app_config.PROJECT_SLUG, path))
+
+def assets_up(path='www/assets'):
+    """
+    Upload www/assets folder to s3
+    """
+    _confirm("You are about to replace the copy of the folder on the server with your own copy. Are you sure?")
+
+    local('aws s3 sync %s/ s3://%s/%s/ --acl "public-read" --cache-control "max-age=5" --region "us-east-1" --delete' % (
+            path,
+            app_config.ASSETS_S3_BUCKET,
+            app_config.PROJECT_SLUG
+        ))
+
+def assets_rm(path):
+    """
+    remove an asset from s3 and locally
+    """
+    file_list = glob(path)
+
+    if len(file_list) > 0:
+
+        _confirm("You are about to destroy %s files. Are you sure?" % len(file_list))
+
+        with settings(warn_only=True):
+
+            for file_path in file_list:
+
+                local('aws s3 rm s3://%s/%s/%s --region "us-east-1"' % (
+                    app_config.ASSETS_S3_BUCKET,
+                    app_config.PROJECT_SLUG,
+                    file_path.replace('www/assets/', '')
+                ))
+
+                local('rm -rf %s' % path)
+
 def _gzip(in_path='www', out_path='.gzip'):
     """
     Gzips everything in www and puts it all in gzip
@@ -482,7 +522,7 @@ def nuke_confs():
             installed_path = _get_installed_conf_path(service, remote_path, extension)
 
             sudo('rm -f %s' % installed_path)
-            
+
             if service == 'nginx':
                 sudo('service nginx reload')
             elif service == 'uwsgi':
@@ -528,8 +568,8 @@ def app_template_bootstrap(project_name=None, repository_name=None):
 
     config = {}
     config['$NEW_PROJECT_SLUG'] = os.getcwd().split('/')[-1]
-    config['$NEW_PROJECT_NAME'] = project_name or config['$NEW_PROJECT_SLUG'] 
-    config['$NEW_REPOSITORY_NAME'] = repository_name or config['$NEW_PROJECT_SLUG'] 
+    config['$NEW_PROJECT_NAME'] = project_name or config['$NEW_PROJECT_SLUG']
+    config['$NEW_REPOSITORY_NAME'] = repository_name or config['$NEW_PROJECT_SLUG']
     config['$NEW_PROJECT_FILENAME'] = config['$NEW_PROJECT_SLUG'].replace('-', '_')
 
     _confirm("Have you created a Github repository named \"%s\"?" % config['$NEW_REPOSITORY_NAME'])
