@@ -141,9 +141,9 @@ $(function(){
     $aspect_ratio_buttons.on('click', function(){
         $aspect_ratio_buttons.removeClass().addClass('btn btn-default');
         $(this).addClass('btn-primary');
-        $poster.removeClass('square two-to-one').addClass($(this).attr('id'));
+        $poster.removeClass('square sixteen-by-nine').addClass($(this).attr('id'));
 
-        if ($poster.hasClass('two-to-one')){
+        if ($poster.hasClass('sixteen-by-nine')){
             adjust_font_size(32);
             $font_size.val(32);
         } else {
