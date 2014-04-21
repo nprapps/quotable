@@ -179,7 +179,6 @@ $(function(){
 
     var editable = document.querySelectorAll('.poster blockquote, .source');
     var editor = new MediumEditor(editable, {
-        disableToolbar: true,
-        cleanPastedHTML: true
+        disableToolbar: true
     });
 });
