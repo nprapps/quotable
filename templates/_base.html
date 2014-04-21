@@ -68,7 +68,8 @@
 
 
     {% endblock outer_content %}
-    {{ JS.push('js/lib/medium-editor.min.js') }}
+    <script src="{{ S3_BASE_URL }}/js/lib/medium-editor.min.js"></script>
+    {{ JS.push('js/lib/underscore.js') }}
     {{ JS.push('js/lib/underscore.js') }}
     {{ JS.push('js/lib/moment.js') }}
     {{ JS.push('js/lib/bootstrap.js') }}
