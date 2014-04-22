@@ -118,6 +118,7 @@ $(function(){
     $font_size = $('#fontsize');
     $show = $('#show');
     $source = $('.source');
+    $show_credit = $('.show-credit');
     $quote = $('#quote');
     $logo_wrapper = $('.logo-wrapper');
 
@@ -163,10 +164,7 @@ $(function(){
 
     $show.on('keyup', function(){
         var input_text = $(this).val();
-        $source.find('em, span').remove();
-        $source
-            .text($.trim($('.source').text()))
-            .append('<span>' + input_text + '</span>');
+        $show_credit.text(input_text);
     });
 
     // // This event is interfering with the medium editor in some browsers
@@ -177,8 +175,8 @@ $(function(){
     // });
 
 
-    var editable = document.querySelectorAll('.poster blockquote, .source');
+    var editable = document.querySelectorAll('.poster blockquote, .source, .show-credit');
     var editor = new MediumEditor(editable, {
-        disableToolbar: true
+        disableToolbar: true,
     });
 });
