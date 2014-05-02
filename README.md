@@ -73,7 +73,7 @@ Node.js is required for the static asset pipeline. If you don't already have it,
 
 ```
 brew install node
-curl https://npmjs.org/install.sh | sh
+curl https://www.npmjs.org/install.sh | sh
 ```
 
 Then install the project requirements:
