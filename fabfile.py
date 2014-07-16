@@ -36,29 +36,6 @@ def staging():
     app_config.configure_targets(env.settings)
 
 """
-Branches
-
-Changing branches requires deploying that branch to a host.
-"""
-def stable():
-    """
-    Work on stable branch.
-    """
-    env.branch = 'stable'
-
-def master():
-    """
-    Work on development branch.
-    """
-    env.branch = 'master'
-
-def branch(branch_name):
-    """
-    Work on any specified branch.
-    """
-    env.branch = branch_name
-
-"""
 Template-specific functions
 
 Changing the template functions should produce output

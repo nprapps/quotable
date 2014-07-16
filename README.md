@@ -14,11 +14,7 @@ quotable
 * [Run Python tests](#run-python-tests)
 * [Compile static assets](#compile-static-assets)
 * [Test the rendered app](#test-the-rendered-app)
-* [Deploy to S3](#deploy-to-s3)
-* [Deploy to EC2](#deploy-to-ec2)
-* [Install cron jobs](#install-cron-jobs)
-* [Install web services](#install-web-services)
-* [Run a remote fab command](#run-a-remote-fab-command)
+* [Deploy](#deploy)
 
 What is this?
 -------------
@@ -47,7 +43,6 @@ What's in here?
 
 The project contains the following folders and important files:
 
-* ``confs`` -- Server configuration files for nginx and uwsgi. Edit the templates then ``fab <ENV> render_confs``, don't edit anything in ``confs/rendered`` directly.
 * ``data`` -- Data files, such as those used to generate HTML.
 * ``etc`` -- Miscellaneous scripts and metadata for project bootstrapping.
 * ``jst`` -- Javascript ([Underscore.js](http://documentcloud.github.com/underscore/#template)) templates.
@@ -60,9 +55,7 @@ The project contains the following folders and important files:
 * ``app.py`` -- A [Flask](http://flask.pocoo.org/) app for rendering the project locally.
 * ``app_config.py`` -- Global project configuration for scripts, deployment, etc.
 * ``copytext.py`` -- Code supporting the [Editing workflow](#editing-workflow)
-* ``crontab`` -- Cron jobs to be installed as part of the project.
 * ``fabfile.py`` -- [Fabric](http://docs.fabfile.org/en/latest/) commands automating setup and deployment.
-* ``public_app.py`` -- A [Flask](http://flask.pocoo.org/) app for running server-side code.
 * ``render_utils.py`` -- Code supporting template rendering.
 * ``requirements.txt`` -- Python requirements.
 
@@ -198,75 +191,10 @@ cd www
 python -m SimpleHTTPServer
 ```
 
-Deploy to S3
-------------
+Deploy
+------
 
 ```
-fab staging master deploy
+fab deploy
 ```
 
-Deploy to EC2
--------------
-
-You can deploy to EC2 for a variety of reasons. We cover two cases: Running a dynamic web application (`public_app.py`) and executing cron jobs (`crontab`).
-
-Servers capable of running the app can be setup using our [servers](https://github.com/nprapps/servers) project.
-
-For running a Web application:
-
-* In ``app_config.py`` set ``DEPLOY_TO_SERVERS`` to ``True``.
-* Also in ``app_config.py`` set ``DEPLOY_WEB_SERVICES`` to ``True``.
-* Run ``fab staging master setup_server`` to configure the server.
-* Run ``fab staging master deploy`` to deploy the app.
-
-For running cron jobs:
-
-* In ``app_config.py`` set ``DEPLOY_TO_SERVERS`` to ``True``.
-* Also in ``app_config.py``, set ``INSTALL_CRONTAB`` to ``True``
-* Run ``fab staging master setup_server`` to configure the server.
-* Run ``fab staging master deploy`` to deploy the app.
-
-You can configure your EC2 instance to both run Web services and execute cron jobs; just set both environment variables in the fabfile.
-
-Install cron jobs
------------------
-
-Cron jobs are defined in the file `crontab`. Each task should use the `cron.sh` shim to ensure the project's virtualenv is properly activated prior to execution. For example:
-
-```
-* * * * * ubuntu bash /home/ubuntu/apps/$PROJECT_NAME/repository/cron.sh fab $DEPLOYMENT_TARGET cron_test
-```
-
-**Note:** In this example you will need to replace `$PROJECT_NAME` with your actual deployed project name.
-
-To install your crontab set `INSTALL_CRONTAB` to `True` in `app_config.py`. Cron jobs will be automatically installed each time you deploy to EC2.
-
-Install web services
----------------------
-
-Web services are configured in the `confs/` folder.
-
-Running ``fab setup_server`` will deploy your confs if you have set ``DEPLOY_TO_SERVERS`` and ``DEPLOY_WEB_SERVICES`` both to ``True`` at the top of ``app_config.py``.
-
-To check that these files are being properly rendered, you can render them locally and see the results in the `confs/rendered/` directory.
-
-```
-fab render_confs
-```
-
-You can also deploy the configuration files independently of the setup command by running:
-
-```
-fab deploy_confs
-```
-
-Run a remote fab command
--------------------------
-
-Sometimes it makes sense to run a fabric command on the server, for instance, when you need to render using a production database. You can do this with the `fabcast` fabric command. For example:
-
-```
-fab staging master fabcast:deploy
-```
-
-If any of the commands you run themselves require executing on the server, the server will SSH into itself to run them.
