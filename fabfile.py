@@ -7,33 +7,6 @@ from fabric.api import *
 
 import app
 import app_config
-from etc import github
-
-"""
-Base configuration
-"""
-env.settings = None
-
-"""
-Environments
-
-Changing environment requires a full-stack test.
-An environment points to both a server and an S3
-bucket.
-"""
-def production():
-    """
-    Run as though on production.
-    """
-    env.settings = 'production'
-    app_config.configure_targets(env.settings)
-
-def staging():
-    """
-    Run as though on staging.
-    """
-    env.settings = 'staging'
-    app_config.configure_targets(env.settings)
 
 """
 Template-specific functions
@@ -153,17 +126,6 @@ def tests():
     """
     local('nosetests')
 
-def bootstrap_issues():
-    """
-    Bootstraps Github issues with default configuration.
-    """
-    auth = github.get_auth()
-    github.delete_existing_labels(auth)
-    github.create_labels(auth)
-    github.create_tickets(auth)
-    github.create_milestones(auth)
-    github.create_hipchat_hook(auth)
-
 """
 Deployment
 
@@ -227,10 +189,7 @@ def deploy(remote='origin'):
     """
     Deploy the latest app.
     """
-    require('settings', provided_by=[production, staging])
-
     render()
-    #_gzip('www', '.gzip')
     _deploy_to_file_server()
 
 """
@@ -250,39 +209,5 @@ def shiva_the_destroyer():
     """
     Deletes the app from s3
     """
-    require('settings', provided_by=[production, staging])
-
-    _confirm("You are about to destroy everything deployed to %s for this project.\nDo you know what you're doing?" % app_config.DEPLOYMENT_TARGET)
-
-"""
-App-template specific setup. Not relevant after the project is running.
-"""
-def app_template_bootstrap(project_name=None, repository_name=None):
-    """
-    Execute the bootstrap tasks for a new project.
-    """
-    config_files = ' '.join(['PROJECT_README.md', 'app_config.py'])
-
-    config = {}
-    config['$NEW_PROJECT_SLUG'] = os.getcwd().split('/')[-1]
-    config['$NEW_PROJECT_NAME'] = project_name or config['$NEW_PROJECT_SLUG']
-    config['$NEW_REPOSITORY_NAME'] = repository_name or config['$NEW_PROJECT_SLUG']
-    config['$NEW_PROJECT_FILENAME'] = config['$NEW_PROJECT_SLUG'].replace('-', '_')
-
-    _confirm("Have you created a Github repository named \"%s\"?" % config['$NEW_REPOSITORY_NAME'])
-
-    for k, v in config.items():
-        local('sed -i "" \'s|%s|%s|g\' %s' % (k, v, config_files))
-
-    local('rm -rf .git')
-    local('git init')
-    local('mv PROJECT_README.md README.md')
-    local('rm *.pyc')
-    local('git add * .gitignore')
-    local('git commit -am "Initial import from app-template."')
-    local('git remote add origin https://github.com/nprapps/%s.git' % config['$NEW_REPOSITORY_NAME'])
-    local('git push -u origin master')
-
-    local('npm install less universal-jst -g --prefix node_modules')
-
-    update_copy()
+    # TODO: not updated for file_server
+    pass
