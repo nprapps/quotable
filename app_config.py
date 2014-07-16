@@ -31,7 +31,7 @@ PROJECT_FILENAME = 'quotable'
 """
 DEPLOYMENT
 """
-FILE_SERVER = '10.53.32.11'
+FILE_SERVER = 'tools.apps.npr.org'
 S3_BUCKET = 'tools.apps.npr.org'
 ASSETS_S3_BUCKET = 'assets.apps.npr.org'
 
