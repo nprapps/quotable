@@ -81,6 +81,11 @@ function saveImage() {
         return;
     }
 
+    // make sure source begins with em dash
+    if ($source.text().split('')[0] !== '—') {
+        $source.html('&mdash;&thinsp;' + $source.text());
+    }
+
     $('canvas').remove();
     processText();
 
