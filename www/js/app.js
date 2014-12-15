@@ -1,14 +1,14 @@
 var $text = null;
 var $save = null;
 var $poster = null;
-var $theme_buttons = null;
-var $aspect_ratio_buttons = null;
+var $themeButtons = null;
+var $aspectRatioButtons = null;
 var $quote = null;
-var $font_size = null;
+var $fontSize = null;
 var $show = null;
 var $source = null;
 var $quote = null;
-var $logo_wrapper = null;
+var $logoWrapper = null;
 
 var quotes = [
     {
@@ -53,31 +53,36 @@ function smarten(a) {
   return a;
 }
 
-function convert_to_slug(text){
+function convertToSlug(text) {
     return text
         .toLowerCase()
         .replace(/[^\w ]+/g,'')
         .replace(/ +/g,'-');
 }
 
-function process_text(){
+function processText() {
     $text = $('.poster blockquote p, .source');
-    $text.each(function(){
-        var raw_text = $.trim($(this).html());
-        $(this).html(smarten(raw_text)).find('br').remove();
+    $text.each(function() {
+        var rawText = $.trim($(this).html());
+        $(this).html(smarten(rawText)).find('br').remove();
     });
 }
 
-function save_image(){
+function saveImage() {
     // first check if the quote actually fits
-
-    if (($source.offset().top + $source.height()) > $logo_wrapper.offset().top){
+    if (($source.offset().top + $source.height()) > $logoWrapper.offset().top) {
         alert("Your quote doesn't quite fit. Shorten the text or choose a smaller font-size.");
         return;
     }
 
+    // don't print placeholder text if source is empty
+    if ($source.text() === '') {
+        alert("A source is required.");
+        return;
+    }
+
     $('canvas').remove();
-    process_text();
+    processText();
 
     html2canvas($poster, {
       onrendered: function(canvas) {
@@ -87,7 +92,7 @@ function save_image(){
         var strDataURI = window.oCanvas.toDataURL();
 
         var quote = $('blockquote').text().split(' ', 5);
-        var filename = convert_to_slug(quote.join(' '));
+        var filename = convertToSlug(quote.join(' '));
 
         var a = $("<a>").attr("href", strDataURI).attr("download", "quote-" + filename + ".png").appendTo("body");
 
@@ -101,70 +106,70 @@ function save_image(){
     });
 }
 
-function adjust_font_size(size){
-    var font_size = size.toString() + 'px';
-    $poster.css('font-size', font_size);
-    if ($font_size.val() !== size){
-        $font_size.val(size);
+function adjustFontSize(size) {
+    var fontSize = size.toString() + 'px';
+    $poster.css('font-size', fontSize);
+    if ($fontSize.val() !== size){
+        $fontSize.val(size);
     };
 }
 
-$(function(){
+$(function() {
     $text = $('.poster blockquote p, .source');
     $save = $('#save');
     $poster = $('.poster');
-    $theme_buttons = $('#theme .btn');
-    $aspect_ratio_buttons = $('#aspect-ratio .btn');
-    $font_size = $('#fontsize');
+    $themeButtons = $('#theme .btn');
+    $aspectRatioButtons = $('#aspect-ratio .btn');
+    $fontSize = $('#fontsize');
     $show = $('#show');
     $source = $('.source');
-    $show_credit = $('.show-credit');
+    $showCredit = $('.show-credit');
     $quote = $('#quote');
-    $logo_wrapper = $('.logo-wrapper');
+    $logoWrapper = $('.logo-wrapper');
 
     var quote = quotes[Math.floor(Math.random()*quotes.length)];
     if (quote.size){
-        adjust_font_size(quote.size);
+        adjustFontSize(quote.size);
     }
     $('blockquote p').text(quote.quote);
     $source.html('&mdash;&thinsp;' + quote.source);
-    process_text();
+    processText();
 
-    $save.on('click', save_image);
+    $save.on('click', saveImage);
 
-    $theme_buttons.on('click', function(){
-        $theme_buttons.removeClass().addClass('btn btn-default');
+    $themeButtons.on('click', function() {
+        $themeButtons.removeClass().addClass('btn btn-default');
         $(this).addClass('btn-primary');
         $poster.removeClass('poster-news poster-music poster-fresh-air poster-snap-judgement')
                     .addClass('poster-' + $(this).attr('id'));
     });
 
-    $aspect_ratio_buttons.on('click', function(){
-        $aspect_ratio_buttons.removeClass().addClass('btn btn-default');
+    $aspectRatioButtons.on('click', function() {
+        $aspectRatioButtons.removeClass().addClass('btn btn-default');
         $(this).addClass('btn-primary');
         $poster.removeClass('square sixteen-by-nine').addClass($(this).attr('id'));
 
-        if ($poster.hasClass('sixteen-by-nine')){
-            adjust_font_size(32);
-            $font_size.val(32);
+        if ($poster.hasClass('sixteen-by-nine')) {
+            adjustFontSize(32);
+            $fontSize.val(32);
         } else {
-            adjust_font_size(90);
-            $font_size.val(90);
+            adjustFontSize(90);
+            $fontSize.val(90);
         }
     });
 
-    $quote.on('click', function(){
+    $quote.on('click', function() {
         $(this).find('button').toggleClass('btn-primary btn-default');
         $poster.toggleClass('quote');
     });
 
-    $font_size.on('change', function(){
-        adjust_font_size($(this).val());
+    $fontSize.on('change', function() {
+        adjustFontSize($(this).val());
     });
 
-    $show.on('keyup', function(){
-        var input_text = $(this).val();
-        $show_credit.text(input_text);
+    $show.on('keyup', function() {
+        var inputText = $(this).val();
+        $showCredit.text(inputText);
     });
 
     // // This event is interfering with the medium editor in some browsers
@@ -175,8 +180,16 @@ $(function(){
     // });
 
 
-    var editable = document.querySelectorAll('.poster blockquote, .source');
-    var editor = new MediumEditor(editable, {
+    var quoteEl = document.querySelectorAll('.poster blockquote');
+    var sourceEl = document.querySelectorAll('.source');
+
+    var quoteEditor = new MediumEditor(quoteEl, {
         disableToolbar: true,
+        placeholder: 'Type your quote here'
+    });
+
+    var sourceEditor = new MediumEditor(sourceEl, {
+        disableToolbar: true,
+        placeholder: 'Type your quote source here'
     });
 });
