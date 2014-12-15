@@ -82,7 +82,7 @@ function saveImage() {
     }
 
     // make sure source begins with em dash
-    if ($source.text().split('')[0] !== '—') {
+    if (!$source.text().match(/^[\u2014]/g)) {
         $source.html('&mdash;&thinsp;' + $source.text());
     }
 
