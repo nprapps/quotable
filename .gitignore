@@ -39,5 +39,6 @@ www/js/templates.js
 www/js/app_config.js
 confs/rendered/*
 data/copy.xls
+data/copy.xlsx
 tumblr-theme.html
 www/assets

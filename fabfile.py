@@ -8,6 +8,7 @@ from fabric.api import *
 import app
 import app_config
 
+
 """
 Template-specific functions
 
@@ -36,9 +37,9 @@ def download_copy():
     """
     Downloads a Google Doc as an .xls file.
     """
-    base_url = 'https://docs.google.com/spreadsheet/pub?key=%s&output=xls'
-    doc_url = base_url % app_config.COPY_GOOGLE_DOC_KEY
-    local('curl -o data/copy.xls "%s"' % doc_url)
+    base_url = 'https://docs.google.com/spreadsheets/d/%s/export?format=xlsx&id=%s'
+    doc_url = base_url % (app_config.COPY_GOOGLE_DOC_KEY, app_config.COPY_GOOGLE_DOC_KEY)
+    local('curl -o data/copy.xlsx "%s"' % doc_url)
 
 def update_copy():
     """
