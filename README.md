@@ -1,6 +1,8 @@
 quotable
 ========================
 
+__NOTE:__ The Quotable repository has been deprecated for our suite of social tools, [Lunchbox](http://github.com/nprapps/lunchbox). You can find the most recent version of Quotable over there.
+
 * [What is this?](#what-is-this)
 * [Assumptions](#assumptions)
 * [What's in here?](#whats-in-here)
