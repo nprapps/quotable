@@ -12,7 +12,7 @@ cssmin==0.1.4
 docutils==0.11
 dulwich==0.9.4
 envoy==0.0.2
-jdcal==1.0
+jdcal==1.0.1
 jmespath==0.2.1
 nose==1.2.1
 odict==1.5.1
