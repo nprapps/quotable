@@ -222,79 +222,198 @@ header {
 	font-size: 90px;
 	line-height: 1 !important;
 	overflow: hidden;
-
-	&.poster-news {
+	.logo-wrapper { 
+		img {
+			width: 250px;
+		}
+	}
+	&.poster-wbur {
 		.logo-wrapper {
-			.logo.logo-news {
+			img {
+				width: 275px;
+			}
+			.logo.logo-wbur {
 				display: inline-block !important;
 				border: none;
-
-				.sixteen-by-nine& {
-					height: 40px;
-					width: auto;
-				}
 			}
 		}
 	}
-
-	&.poster-music {
-		background: @musicDark;
-		color: @musicLight;
-
-		.logo {
-			border: 1px solid @musicLight;
-		}
-
+	&.poster-npr {
 		.logo-wrapper {
-			background: @musicDark;
-			padding-bottom: @grid-gutter-width * 2 - 14;
 
-			.logo.logo-music {
+			.logo.logo-npr {
 				display: inline-block !important;
 				border: none;
-
-				.sixteen-by-nine& {
-					width: 242px;
-					height: 65px;
-					overflow: hidden;
-					background: url('../assets/npr-music-logo-small.png') no-repeat;
-					padding-left: 242px;
-				}
 			}
 		}
 	}
+	&.poster-onpoint {
+		background: #f7f7f0;
+		color: #000;
+		.logo-wrapper {
 
-	&.poster-snap-judgement {
-		background: #C66137;
+			.logo.logo-onpoint {
+				display: inline-block !important;
+				border: none;
+			}
+		}
+	}
+	&.poster-hearandnow {
+		background: #F3F3F4;
+		color: #152731;
+		.logo-wrapper {
+
+			.logo.logo-hearandnow {
+				display: inline-block !important;
+				border: none;
+			}
+		}
+	}
+	&.poster-onlyagame {
+		background: #16b289;
 		color: #fff;
-
 		.logo-wrapper {
-			background: #C66137;
-			color: #fff;
-			padding-bottom: @grid-gutter-width * 2 - 14;
 
-			.logo.logo-snap-judgement {
-				display: inline-block !important;
-				border: none;
-				width: 300px;
-
-				.sixteen-by-nine& {
-					width: 150px;
-				}
-			}
-		}
-	}
-
-	&.poster-fresh-air {
-		.logo-wrapper {
-			padding-bottom: @grid-gutter-width * 2 - 14;
-
-			.logo.logo-fresh-air {
+			.logo.logo-onlyagame {
 				display: inline-block !important;
 				border: none;
 			}
 		}
 	}
+	&.poster-radioboston {
+		background: #d5efe5;
+		color: #152731;
+		.logo-wrapper {
+
+			.logo.logo-radioboston {
+				display: inline-block !important;
+				border: none;
+			}
+		}
+	}
+	&.poster-modernlove {
+		background: #f7f7f0;
+		color: #000;
+
+		.logo-wrapper {
+
+			.logo.logo-modernlove {
+				display: inline-block !important;
+				border: none;
+			}
+		}
+	}
+	&.poster-dearsugar {
+		background: #ffefe3;
+		color: #152731;
+
+		.logo-wrapper {
+
+			.logo.logo-dearsugar {
+				display: inline-block !important;
+				border: none;
+			}
+		}
+	}
+	&.poster-kindworld {
+		background: #fde522;
+		color: #152731;
+		.logo-wrapper {
+
+			.logo.logo-kindworld {
+				display: inline-block !important;
+				border: none;
+			}
+		}
+	}
+	&.poster-magicpill {
+		background: #d7ecf2;
+		color: #343335;
+		.logo-wrapper {
+
+			.logo.logo-magicpill {
+				display: inline-block !important;
+				border: none;
+			}
+		}
+	}
+	&.poster-cognoscenti {
+		color: #152731;
+		.logo-wrapper {
+
+			.logo.logo-cognoscenti {
+				display: inline-block !important;
+				border: none;
+			}
+		}
+	}
+	&.poster-commonhealth {
+		background: #e3faff;
+		color: #2d2d77;
+
+		.logo-wrapper {
+
+			.logo.logo-commonhealth {
+				display: inline-block !important;
+				border: none;
+			}
+		}
+	}
+	&.poster-artery {
+
+		background: #e73e32;
+		color: #fff;
+		.logo-wrapper {
+
+			.logo.logo-artery {
+				display: inline-block !important;
+				border: none;
+			}
+		}
+	}
+	&.poster-bostonomix {
+		background: #f5f5f5;
+		color: #152731;
+		.logo-wrapper {
+
+			.logo.logo-bostonomix {
+				display: inline-block !important;
+				border: none;
+			}
+		}
+	}
+	&.poster-edify {
+		background: #dddddd;
+		color: #000000;
+		.logo-wrapper {
+
+			.logo.logo-edify {
+				display: inline-block !important;
+				border: none;
+			}
+		}
+	}
+	&.poster-politicker {
+		background: #f5f5f5;
+		color: #152731;
+		.logo-wrapper {
+
+			.logo.logo-politicker {
+				display: inline-block !important;
+				border: none;
+			}
+		}
+	}
+	&.poster-remembrance-project {
+		.logo-wrapper {
+
+			.logo.logo-remembrance-project {
+				display: inline-block !important;
+				border: none;
+			}
+		}
+	}
+
 
 	&.sixteen-by-nine {
 		height: 360px;
@@ -315,7 +434,7 @@ header {
 			padding: @grid-gutter-width;
 
 			img {
-				width: 150px;
+				width: 175px;
 			}
 
 			.poster-music& {
@@ -426,7 +545,6 @@ header {
 		padding:  @grid-gutter-width @grid-gutter-width * 2 @grid-gutter-width * 2;
 		margin: 0;
 		font-size: 46px;
-		background: #fff;
 
 		.logo {
 			.hide;
